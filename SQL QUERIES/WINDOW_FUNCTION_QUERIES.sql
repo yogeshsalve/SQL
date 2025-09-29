@@ -62,20 +62,55 @@ SELECT * FROM Product;
 --A. ROW_NUMBER() – Unique row numbering
 
 --1. Assign row numbers to all employees ordered by salary descending.
+SELECT *,
+ROW_NUMBER() OVER(ORDER BY Salary DESC) AS Rank
+FROM Employee;
 
---Assign row numbers partitioned by department, ordered by salary descending.
+--2. Assign row numbers partitioned by department, ordered by salary descending.
+SELECT *,
+ROW_NUMBER() OVER(PARTITION BY DepartmentID ORDER BY Salary DESC) AS Rank
+FROM Employee;
 
---Assign row numbers partitioned by job title, ordered by hire date ascending.
+--3. Assign row numbers partitioned by job title, ordered by hire date ascending.
+SELECT *,
+ROW_NUMBER() OVER(PARTITION BY JobTitle ORDER BY HireDate) AS Rank
+FROM Employee;
 
---Assign row numbers to employees ordered by last name ascending.
+--4. Assign row numbers to employees ordered by last name ascending.
+SELECT *,
+ROW_NUMBER() OVER(ORDER BY LastName) AS Rank
+FROM Employee;
 
---Assign row numbers partitioned by city, ordered by salary descending.
+--5. Assign row numbers partitioned by city, ordered by salary descending.
+SELECT *,
+ROW_NUMBER() OVER(PARTITION BY City ORDER BY Salary DESC) AS Rank
+FROM Employee;
 
---Find the first employee per department using ROW_NUMBER().
+--6. Find the first employee per department using ROW_NUMBER().
+WITH CTE AS(
+SELECT *,
+ROW_NUMBER() OVER(PARTITION BY DepartmentID ORDER BY HIreDate DESC) AS Rank
+FROM Employee) 
 
---Find the top 3 salaries per department.
+SELECT * FROM CTE 
+WHERE Rank =1;
 
---Delete duplicate rows using ROW_NUMBER().
+--7. Find the top 3 salaries per department.
+with cte as (
+SELECT *,
+ROW_NUMBER() OVER(PARTITION BY DepartmentID ORDER BY Salary DESC) AS Rank
+FROM Employee) 
+
+select * from cte
+WHERE Rank <=3;
+
+--8. Delete duplicate rows using ROW_NUMBER().
+with cte as (
+SELECT *,
+ROW_NUMBER() OVER(PARTITION BY FirstName, LastName ORDER BY EmployeeID) AS Rank
+FROM Employee)
+
+DELETE FROM CTE WHERE Rank > 1;
 
 --Find 2nd highest salary using ROW_NUMBER().
 
