@@ -112,9 +112,19 @@ FROM Employee)
 
 DELETE FROM CTE WHERE Rank > 1;
 
---Find 2nd highest salary using ROW_NUMBER().
+--9. Find 2nd highest salary using ROW_NUMBER().
+WITH CTE AS (
+SELECT *, 
+ROW_NUMBER() OVER(order by salary desc) as rank 
+FROM Employee) 
 
---Assign row numbers ignoring NULL salaries.
+SELECT FirstName, LastName, Salary 
+FROM CTE 
+WHERE  rank = 2; 
+
+--10. Assign row numbers ignoring NULL salaries.
+SELECT *, ROW_NUMBER() OVER(ORDER BY CASE WHEN Salary IS NULL THEN 1 ELSE 0 END, Salary DESC) AS RowNum
+FROM Employee;
 
 --B. RANK() – Handles ties, leaves gaps
 
