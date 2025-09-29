@@ -59,39 +59,39 @@ SELECT * FROM Orders;
 SELECT * FROM Product;
 
 
-A. ROW_NUMBER() – Unique row numbering
+--A. ROW_NUMBER() – Unique row numbering
 
-Assign row numbers to all employees ordered by salary descending.
+--1. Assign row numbers to all employees ordered by salary descending.
 
-Assign row numbers partitioned by department, ordered by salary descending.
+--Assign row numbers partitioned by department, ordered by salary descending.
 
-Assign row numbers partitioned by job title, ordered by hire date ascending.
+--Assign row numbers partitioned by job title, ordered by hire date ascending.
 
-Assign row numbers to employees ordered by last name ascending.
+--Assign row numbers to employees ordered by last name ascending.
 
-Assign row numbers partitioned by city, ordered by salary descending.
+--Assign row numbers partitioned by city, ordered by salary descending.
 
-Find the first employee per department using ROW_NUMBER().
+--Find the first employee per department using ROW_NUMBER().
 
-Find the top 3 salaries per department.
+--Find the top 3 salaries per department.
 
-Delete duplicate rows using ROW_NUMBER().
+--Delete duplicate rows using ROW_NUMBER().
 
-Find 2nd highest salary using ROW_NUMBER().
+--Find 2nd highest salary using ROW_NUMBER().
 
-Assign row numbers ignoring NULL salaries.
+--Assign row numbers ignoring NULL salaries.
 
-B. RANK() – Handles ties, leaves gaps
+--B. RANK() – Handles ties, leaves gaps
 
-Rank employees by salary descending.
+--Rank employees by salary descending.
 
-Rank employees by department and salary descending.
+--Rank employees by department and salary descending.
 
-Rank sales orders by total amount per customer.
+--Rank sales orders by total amount per customer.
 
-Find top 3 salaries per department using RANK().
+--Find top 3 salaries per department using RANK().
 
-Find employees tied at the highest salary.
+/*Find employees tied at the highest salary.
 
 Rank employees by hire date ascending per department.
 
@@ -277,5 +277,6 @@ Min sale per product category.
 
 Max hire date per department.
 
-Min hire date per department.
+Min hire date per department. */
+
 
